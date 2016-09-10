@@ -1,0 +1,53 @@
+.navbar-default {
+    background-color: black;
+    border-radius: 0;
+}
+
+.navbar-default img {
+    height: 61px;
+}
+
+.navbar-default .container-fluid .navbar-text {
+    color: white;
+    position: absolute;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    right: 15px;
+    top: 29px;
+}
+
+#app-container {
+    background-image: url('https://assets.about.me/background/alexbelyakov_1331935331_55.jpg');
+    width: 100vw;
+    height: 100vh;
+}
+
+#app-container #signup {
+    position: relative;
+    margin: auto;
+    max-width: 400px;
+    width: 400px;
+    top: 40px;
+    background-color: rgba(0, 0, 0, 0.63);
+}
+
+#app-container #signup h1 {
+    text-align: center;
+    font-size: 2rem;
+    opacity: 1;
+    color: white;
+    font-family: serif;
+    padding: 10px;
+}
+
+div#signup_form_container {
+    padding: 15px;
+}
+
+#signup_form_container .input-group {
+    padding-bottom: 10px;
+}
+
+#submit_button_container {
+    text-align: center;
+}
