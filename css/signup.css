@@ -16,6 +16,17 @@
     top: 29px;
 }
 
+
+.fonts {
+  font-family: serif;
+}
+
+#background {
+    background-color: #e6ffe6;
+    width: 100vw;
+    height: 100vh;
+}
+
 #app-container {
     background-image: url('https://assets.about.me/background/alexbelyakov_1331935331_55.jpg');
     width: 100vw;
