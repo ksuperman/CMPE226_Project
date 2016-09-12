@@ -16,15 +16,21 @@
     top: 29px;
 }
 
+.centerBlock {
+  display: table;
+  margin: 0 auto;
+}
 
 .fonts {
   font-family: serif;
 }
 
 #background {
-    background-color: #e6ffe6;
+    background-image: url('https://assets.about.me/background/alexbelyakov_1331935331_55.jpg');
     width: 100vw;
     height: 100vh;
+    opacity: 0.8;
+    font-weight: bold;
 }
 
 #app-container {
@@ -61,4 +67,8 @@ div#signup_form_container {
 
 #submit_button_container {
     text-align: center;
+}
+
+#table-row, #table-col, #table-wrapper {
+    height: 80%;
 }
