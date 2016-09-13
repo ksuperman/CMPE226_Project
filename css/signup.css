@@ -39,6 +39,10 @@
     height: 100vh;
 }
 
+.hidden {
+    display: none;
+}
+
 #app-container #signup {
     position: relative;
     margin: auto;
@@ -59,6 +63,19 @@
 
 div#signup_form_container {
     padding: 15px;
+}
+
+
+div#signup_form_container label {
+    position: absolute;
+    width: 200px;
+    color: red;
+    padding-top: 9px;
+    padding-right: 9px;
+    padding-bottom: 9px;
+    padding-left: 24px;
+    display: inline-block;
+    margin-bottom: .5rem;
 }
 
 #signup_form_container .input-group {
