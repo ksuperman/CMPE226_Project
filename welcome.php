@@ -52,7 +52,7 @@
 					try {
 						$dbh = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
 
-						$sql_stmt = "SELECT FIRST_NAME, LAST_NAME, EMAIL, USER_ID, DATE_OF_BIRTH, GENDER, ADDRESS, CONTACT_NUMBER FROM USER_DETAILS WHERE USER_ID='".$_GET["username"]."';";
+						$sql_stmt = "SELECT FIRST_NAME, LAST_NAME, EMAIL, USER_ID, DATE_OF_BIRTH, GENDER, ADDRESS, CONTACT_NUMBER,SUBSCRIPTION,CONTACT_MODE FROM USER_DETAILS WHERE USER_ID='".$_GET["username"]."';";
 						$sql = $dbh->prepare($sql_stmt);
 
 						if($sql->execute()) {
@@ -105,6 +105,14 @@
 									<tr>
 										<td>Contact Number</td>
 										<td><?php echo $row['CONTACT_NUMBER']; ?></td>	        	
+									</tr>
+									<tr>
+										<td>Subscribed to Newsletter</td>
+										<td><?php echo $row['SUBSCRIPTION']; ?></td>	        	
+									</tr>
+									<tr>
+										<td>Contact Mode</td>
+										<td><?php echo $row['CONTACT_MODE']; ?></td>	        	
 									</tr>
 									<?php } ?>
 									</tbody>

@@ -77,18 +77,18 @@
 
                     <hr></hr>
                     <div class="input-group">                       
-                            <input type="checkbox" name="subscription" id="subscription"/> <font color="white">  Subscribe for Newsletter   </font>            
+                            <input type="checkbox" name="subscription" id="subscription"/> Subscribe for Newsletter
                     </div>
                     <hr></hr>
                     <div class = "input-group text-center">
                         <h5>Preferred Mode of Contact: </h5>
-                        <input type="radio" name="contact_mode">Email
-                        <input type="radio" name="contact_mode">Text Message
+                        <input type="radio" name="contact_mode" value="EMAIL">Email
+                        <input type="radio" name="contact_mode" value="TEXT">Text Message
                     </div>
 
                     <hr></hr>
                     <div id="submit_button_container">
-                        <button type="submit" class="btn btn-success">Create Account</button>
+                        <input type="submit" class="btn btn-success" name="submit" value="Create Account"></input>
                         <a href="login.php" class="btn btn-success">Existing User Login</a>
                     </div>
                 </form>
