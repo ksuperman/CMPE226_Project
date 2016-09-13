@@ -45,7 +45,7 @@
 					<?php
 					$servername = "localhost";
 					$username = "root";
-					$password = "root";
+					$password = "sesame";
 					$dbname = "ONLINESHOPPING";
 
 

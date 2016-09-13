@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost";
 $username = "root";
-$password = "root";
+$password = "sesame";
 $dbname = "ONLINESHOPPING";
 
 // Create connection
@@ -29,7 +29,7 @@ VALUES ('".$_POST["firstname"]."', '".$_POST["lastname"]."','".$_POST["email"]."
 
 
 if ($conn->query($sql) === TRUE) {
-	header("location: index.php?error=".urlencode("Record entered successfully"));
+	header("location: index.php?error=".urlencode("Account created successfully"));
 } else {
 	header("location: index.php?error=".urlencode($conn->error));
     echo "Error: " . $sql . "<br>" . $conn->error;
