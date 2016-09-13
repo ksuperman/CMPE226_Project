@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 13, 2016 at 10:47 PM
+-- Generation Time: Sep 13, 2016 at 11:16 PM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 5.6.24
 
@@ -34,7 +34,7 @@ CREATE TABLE `USER_DETAILS` (
   `PASSWORD` varchar(20) NOT NULL,
   `GENDER` char(1) NOT NULL,
   `ADDRESS` varchar(100) NOT NULL,
-  `CONTACT_NUMBER` int(10) NOT NULL,
+  `CONTACT_NUMBER` bigint(20) NOT NULL,
   `DATE_OF_BIRTH` date NOT NULL,
   `SUBSCRIPTION` varchar(3) NOT NULL DEFAULT 'NO',
   `CONTACT_MODE` varchar(5) NOT NULL DEFAULT 'TEXT'
