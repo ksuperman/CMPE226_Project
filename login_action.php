@@ -22,7 +22,7 @@
       if($count == 1) {
          header("location: welcome.php?username=".urlencode($_POST['username']));
       }else {
-         header("location: login_new.php?error=Your Login Name or Password is invalid");
+         header("location: login.php?error=Your Login Name or Password is invalid");
       }
    }
 ?>

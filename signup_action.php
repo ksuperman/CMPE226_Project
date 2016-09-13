@@ -15,8 +15,9 @@ $sql = "INSERT INTO USER_DETAILS (FIRST_NAME, LAST_NAME, EMAIL,PASSWORD,USER_ID,
 VALUES ('".$_POST["firstname"]."', '".$_POST["lastname"]."','".$_POST["email"]."', '".$_POST["password"]."','".$_POST["username"]."', '".$_POST["dob"]."','".$_POST["sex"]."','".$_POST["address"]."','".$_POST["phone_number"]."')";
 
 if ($conn->query($sql) === TRUE) {
-    echo "Record entered successfully";
+	header("location: index.php?error=".urlencode("Record entered successfully"));
 } else {
+	header("location: index.php?error=".urlencode($conn->error));
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
 
