@@ -63,9 +63,12 @@
 
 div#signup_form_container {
     padding: 15px;
+    color: white;
 }
 
-
+hr {
+    background-color : white;
+}
 div#signup_form_container label {
     position: absolute;
     width: 200px;

@@ -24,7 +24,7 @@
                 <a class="navbar-brand" href="/CMPE226/">
                     <img alt="Brand" src="http://freevector.co/wp-content/uploads/2010/10/php-1.png">
                 </a>
-                <p class="navbar-text navbar-right">Project Submission by DateFreaks</p>
+                <p class="navbar-text navbar-right">Project Submission by DataFreaks</p>
             </div>
         </div>
     </nav>
@@ -74,6 +74,19 @@
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="Phone Number" name="phone_number" id="phone_number" aria-describedby="basic-addon1">
                     </div>
+
+                    <hr></hr>
+                    <div class="input-group">                       
+                            <input type="checkbox" name="subscription" id="subscription"/> <font color="white">  Subscribe for Newsletter   </font>            
+                    </div>
+                    <hr></hr>
+                    <div class = "input-group text-center">
+                        <h5>Preferred Mode of Contact: </h5>
+                        <input type="radio" name="contact_mode">Email
+                        <input type="radio" name="contact_mode">Text Message
+                    </div>
+
+                    <hr></hr>
                     <div id="submit_button_container">
                         <button type="submit" class="btn btn-success">Create Account</button>
                         <a href="login.php" class="btn btn-success">Existing User Login</a>
