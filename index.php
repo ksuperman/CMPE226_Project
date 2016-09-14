@@ -82,7 +82,7 @@
                     <hr></hr>
                     <div class = "input-group text-center">
                         <h5>Preferred Mode of Contact: </h5>
-                        <input type="radio" name="contact_mode" value="EMAIL">Email
+                        <input type="radio" name="contact_mode" value="EMAIL">Email<br>
                         <input type="radio" name="contact_mode" value="TEXT">Text Message
                     </div>
 

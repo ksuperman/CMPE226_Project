@@ -46,7 +46,7 @@
 					$servername = "localhost";
 					$username = "datafreaks";
 					$password = "sesame";
-					$dbname = "ONLINESHOPPING";
+					$dbname = "DATAFREAKS";
 
 
 					try {
