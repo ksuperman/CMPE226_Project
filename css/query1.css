@@ -1,0 +1,17 @@
+.navbar-default {
+    background-color: black;
+    border-radius: 0;
+}
+
+.navbar-inverse img {
+    height: 61px;
+}
+
+.navbar-inverse .container .navbar-text {
+    color: white;
+    position: absolute;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    right: 15px;
+    top: 29px;
+}
