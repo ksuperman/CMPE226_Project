@@ -9,8 +9,7 @@
 
     <link rel="stylesheet" href="../css/query1.css">
     
-    <script   src="https://code.jquery.com/jquery-3.1.0.min. 
-    "   integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="   crossorigin="anonymous"></script>
+   <script   src="https://code.jquery.com/jquery-3.1.1.js"   integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="   crossorigin="anonymous"></script>
     <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.7/jquery.validate.min.js"></script>
     <script href="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/additional-methods.js" type="application/javascript"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="application/javascript"></script>
@@ -35,7 +34,7 @@
         <div class = "row" >
             <div class="col-lg-3"></div>
             <div class="col-lg-6">
-            <h1><span class="label label-default pull-right">You have to put no of items in textbox and you can find out all the user id and order id with that particular no of items.</span></h1></div>
+            <h1><span class="label label-default pull-right">Enter Account Id to get its Shopping Cart</span></h1></div>
             <div class="col-lg-3"></div>
         </div>
         <hr/>    
@@ -48,9 +47,9 @@
                 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"> 
                     <div class="input-group">
                       <span class="input-group-btn">
-                        <button class="btn btn-default" type="submit">Enter No of items in orders</button>
+                        <button class="btn btn-default" type="submit">Enter Account Id</button>
                     </span>
-                    <input name="no_of_orders" type="text" class="form-control" placeholder="Enter a number..">
+                    <input name="accountId" type="text" class="form-control" placeholder="Enter a Account Id..">
                 </div>
             </form>
         </div><!-- /.col-lg-6 -->
@@ -62,22 +61,23 @@
 
     <?php
     $servername = "localhost";
-    $username = "datafreaks";
+    $username = "root";
     $password = "sesame";
     $dbname = "datafreaks";
     $flag = FALSE;
 
     try {
-        if(!empty($_REQUEST['no_of_orders'])) {
+        if(!empty($_REQUEST['accountId'])) {
             $dbh = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password); 
             
             $flag = TRUE;
-            $no_of_orders = $_REQUEST['no_of_orders'];                    
-            $sql_stmt = "SELECT ORDERS.USERID as UserId, ORDERS.ID as OrderId,  COUNT(ORDERLINEITEMS.ID) as NoOFItem FROM ORDERS INNER JOIN ORDERLINEITEMS ON ORDERS.ID = ORDERLINEITEMS.ORDERID GROUP BY ORDERID HAVING COUNT(ORDERLINEITEMS.ID) = '$no_of_orders' ;";
+            //$accountId = $_REQUEST['accountId'];
+			$accountId = filter_input(INPUT_POST, "accountId");     			
+            $sql_stmt = "select p.id as id, p.name as name, p.price as price from product p, product_shoppingcart ps, shoppingcart sc where sc.id = ps.cartid and ps.productid = p.id and sc.accountid = :accountId ;";
 
             $sql = $dbh->prepare($sql_stmt);
 
-            if($sql->execute()) {
+            if($sql->execute(array(':accountId' => $accountId))) {
                 $sql->setFetchMode(PDO::FETCH_ASSOC);
             }	
         }
@@ -97,16 +97,16 @@
                 <table class="table table-striped">
                     <tbody>
                        <thead>                                       
-                        <th>UserID</th> 
-						<th> Order Id </th>
-                        <th>No of items in order</th>                                              
+                        <th>Product Id</th> 
+						<th> Product Description </th>
+                        <th>Price</th>                                              
                     </thead>
                     <?php while($flag==TRUE AND $row = $sql->fetch()) { ?>
 
                         <tr>                                       
-                            <td><?php echo $row['UserId']; ?></td>                                                     
-                            <td><?php echo $row['OrderId']; ?></td>   
-							<td><?php echo $row['NoOFItem']; ?></td> 
+                            <td><?php echo $row['id']; ?></td>                                                     
+                            <td><?php echo $row['name']; ?></td>   
+							<td><?php echo $row['price']; ?></td> 
                         </tr>
                         <?php } ?>
                     </tbody>

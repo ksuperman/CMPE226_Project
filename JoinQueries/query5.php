@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>User Phone Number</title>
-    <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
+       <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
     <link rel="stylesheet" href="../css/query1.css">
     
-    <script   src="https://code.jquery.com/jquery-3.1.0.min. 
-    "   integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="   crossorigin="anonymous"></script>
+   <script   src="https://code.jquery.com/jquery-3.1.1.js"   integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="   crossorigin="anonymous"></script>
     <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.7/jquery.validate.min.js"></script>
     <script href="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/additional-methods.js" type="application/javascript"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="application/javascript"></script>
@@ -62,7 +61,7 @@
 
     <?php
     $servername = "localhost";
-    $username = "datafreaks";
+    $username = "root";
     $password = "sesame";
     $dbname = "datafreaks";
     $flag = FALSE;
@@ -72,12 +71,12 @@
             $dbh = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password); 
             
             $flag = TRUE;
-            $accountId = $_REQUEST['accountId'];                    
-            $sql_stmt = "SELECT ACCOUNT.EMAIL AS EMAIL, PHONENUMBER.PHONETYPE AS PHONETYPE, CONCAT(PHONENUMBER.COUNTRYCODE, PHONENUMBER.AREACODE, PHONENUMBER.NUMBER) AS CELLNUMBER FROM ACCOUNT INNER JOIN phonenumber ON ACCOUNT.ID=PHONENUMBER.ACCOUNTID WHERE PHONENUMBER.ACCOUNTID = '$accountId' ;";
+			$accountId = filter_input(INPUT_POST, "accountId");                  
+            $sql_stmt = "SELECT ACCOUNT.EMAIL AS EMAIL, PHONENUMBER.PHONETYPE AS PHONETYPE, CONCAT(PHONENUMBER.COUNTRYCODE, PHONENUMBER.AREACODE, PHONENUMBER.NUMBER) AS CELLNUMBER FROM ACCOUNT INNER JOIN phonenumber ON ACCOUNT.ID=PHONENUMBER.ACCOUNTID WHERE PHONENUMBER.ACCOUNTID = :accountId ;";
 
             $sql = $dbh->prepare($sql_stmt);
 
-            if($sql->execute()) {
+            if($sql->execute(array(':accountId' => $accountId))) {
                 $sql->setFetchMode(PDO::FETCH_ASSOC);
             }	
         }
