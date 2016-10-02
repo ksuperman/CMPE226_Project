@@ -34,7 +34,7 @@
         <div class = "row" >
             <div class="col-lg-3"></div>
             <div class="col-lg-6">
-            <h1><span class="label label-default pull-right">Enter Account id to see user all the phone numbers and phone type.</span></h1></div>
+            <h2><span class="label label-default pull-right">Enter the Account Id to get the Mode Of Payments associated with it</span></h2></div>
             <div class="col-lg-3"></div>
         </div>
         <hr/>    
@@ -47,9 +47,9 @@
                 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"> 
                     <div class="input-group">
                       <span class="input-group-btn">
-                        <button class="btn btn-default" type="submit">Display Phone Numbers</button>
+                        <button class="btn btn-default" type="submit">Display Payment Methods</button>
                     </span>
-                    <input name="accountId" type="text" class="form-control" placeholder="Enter a number.. Eg. 1048">
+                    <input name="accountId" type="text" class="form-control" placeholder="Enter Account Id Eg. 1048">
                 </div>
             </form>
         </div><!-- /.col-lg-6 -->
@@ -88,9 +88,6 @@
 ?>
 <br/>
 <div class = container>
-<?php
-    echo '<p>', $sql_stmt, '</p>';
-  ?>
     <div class="row">
         <div class="col-lg-2">
         </div><!-- /.row -->
