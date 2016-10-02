@@ -37,7 +37,7 @@
             <h1><span class="label label-default pull-right">Orders</span></h1></div>
             <div class="col-lg-5"></div>
         </div>
-                    <br/>   
+        <br/>   
         <div class="row">
             <div class="col-lg-1">
             </div><!-- /.row -->
@@ -92,12 +92,12 @@
                 $value="shipped";
             }
             else if(isset($_POST['processed'])) {
-              $value="to ship";
+              $value="processed";
           }
           else if(isset($_POST['incart'])) {
-           $value="in cart";
+           $value="cart";
        }
-       else if(isset($_POST['all'])) {
+       else if(isset($_POST['cancelled'])) {
         $value = "cancelled";
     }
     else if(isset($_POST['onhold'])) {
@@ -109,12 +109,12 @@
 
 if($value === "all") {
 
-    $sql_stmt = "SELECT o.status as status,o.id as id,ol.quantity as quantity, p.name as name ,p.price as price FROM orders as o, orderlineitems as ol, product p where userid = 1 AND o.id = ol.orderid AND ol.productid=p.id ;";
+    $sql_stmt = "SELECT o.status as status,o.id as id,ol.quantity as quantity, p.name as name ,p.price as price FROM orders as o, orderlineitems as ol, product p where userid = 107 AND o.id = ol.orderid AND ol.productid=p.id ;";
 
 }                    
 else 
 { 
- $sql_stmt = "SELECT o.status as status,o.id as id,ol.quantity as quantity, p.name as name ,p.price as price FROM orders as o, orderlineitems as ol, product p where userid = 1 AND o.id = ol.orderid AND ol.productid=p.id AND o.status = '".$value."';";
+ $sql_stmt = "SELECT o.status as status,o.id as id,ol.quantity as quantity, p.name as name ,p.price as price FROM orders as o, orderlineitems as ol, product p where userid = 107 AND o.id = ol.orderid AND ol.productid=p.id AND o.status = '".$value."';";
 }
 
 $sql = $dbh->prepare($sql_stmt);

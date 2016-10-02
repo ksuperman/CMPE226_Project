@@ -36,7 +36,7 @@
                       <span class="input-group-btn">
                         <button class="btn btn-default" type="submit">Category</button>
                     </span>
-                    <input name="category" type="text" class="form-control" placeholder="example Software">
+                    <input name="category" type="text" class="form-control" placeholder="E.g. Administration">
                 </div>
             </form>
         </div><!-- /.col-lg-6 -->

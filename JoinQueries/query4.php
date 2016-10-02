@@ -47,9 +47,9 @@
                 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"> 
                     <div class="input-group">
                       <span class="input-group-btn">
-                        <button class="btn btn-default" type="submit">Enter Account Id</button>
+                        <button class="btn btn-default" type="submit">Get Shopping Cart</button>
                     </span>
-                    <input name="accountId" type="text" class="form-control" placeholder="Enter a Account Id..">
+                    <input name="accountId" type="text" class="form-control" placeholder="Enter a Account Id.. Eg. 1048">
                 </div>
             </form>
         </div><!-- /.col-lg-6 -->
@@ -61,7 +61,7 @@
 
     <?php
     $servername = "localhost";
-    $username = "root";
+    $username = "datafreaks";
     $password = "sesame";
     $dbname = "datafreaks";
     $flag = FALSE;

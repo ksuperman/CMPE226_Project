@@ -47,9 +47,9 @@
                 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"> 
                     <div class="input-group">
                       <span class="input-group-btn">
-                        <button class="btn btn-default" type="submit">Enter Account id of user</button>
+                        <button class="btn btn-default" type="submit">Display Phone Numbers</button>
                     </span>
-                    <input name="accountId" type="text" class="form-control" placeholder="Enter a number..">
+                    <input name="accountId" type="text" class="form-control" placeholder="Enter a number.. Eg. 1048">
                 </div>
             </form>
         </div><!-- /.col-lg-6 -->
@@ -61,7 +61,7 @@
 
     <?php
     $servername = "localhost";
-    $username = "root";
+    $username = "datafreaks";
     $password = "sesame";
     $dbname = "datafreaks";
     $flag = FALSE;
@@ -72,7 +72,7 @@
             
             $flag = TRUE;
 			$accountId = filter_input(INPUT_POST, "accountId");                  
-            $sql_stmt = "SELECT ACCOUNT.EMAIL AS EMAIL, PHONENUMBER.PHONETYPE AS PHONETYPE, CONCAT(PHONENUMBER.COUNTRYCODE, PHONENUMBER.AREACODE, PHONENUMBER.NUMBER) AS CELLNUMBER FROM ACCOUNT INNER JOIN phonenumber ON ACCOUNT.ID=PHONENUMBER.ACCOUNTID WHERE PHONENUMBER.ACCOUNTID = :accountId ;";
+            $sql_stmt = "SELECT mop.type AS 'Payment Type', mop.cardnumber AS 'Card Number', acc.EMAIL as 'Email', CONCAT(CONCAT(addr.CITY, ', '), addr.STATE) as 'address' FROM `modeofpayment` mop, account acc, address addr WHERE mop.ACCOUNTID = acc.ID AND mop.ADDRESSID = addr.ID AND `ACCOUNTID` =:accountId ;";
 
             $sql = $dbh->prepare($sql_stmt);
 
@@ -88,6 +88,9 @@
 ?>
 <br/>
 <div class = container>
+<?php
+    echo '<p>', $sql_stmt, '</p>';
+  ?>
     <div class="row">
         <div class="col-lg-2">
         </div><!-- /.row -->
@@ -96,16 +99,18 @@
                 <table class="table table-striped">
                     <tbody>
                        <thead>                                       
-                        <th>Email Id</th> 
-						<th> Phone Type </th>
-                        <th>Phone Number</th>                                              
+                        <th>Payment Type</th> 
+						<th>Card Number</th>
+                        <th>Email</th> 
+                        <th>Address</th>                                              
                     </thead>
                     <?php while($flag==TRUE AND $row = $sql->fetch()) { ?>
 
                         <tr>                                       
-                            <td><?php echo $row['EMAIL']; ?></td>                                                     
-                            <td><?php echo $row['PHONETYPE']; ?></td>   
-							<td><?php echo $row['CELLNUMBER']; ?></td> 
+                            <td><?php echo $row['Payment Type']; ?></td>                                                     
+                            <td><?php echo $row['Card Number']; ?></td>   
+							<td><?php echo $row['Email']; ?></td> 
+                            <td><?php echo $row['address']; ?></td> 
                         </tr>
                         <?php } ?>
                     </tbody>
