@@ -62,7 +62,7 @@
 
     <?php
     $servername = "localhost";
-    $username = "root";
+    $username = "datafreaks";
     $password = "sesame";
     $dbname = "datafreaks";
     $flag = FALSE;
