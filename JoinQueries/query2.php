@@ -54,13 +54,10 @@
                             <button class="btn btn-primary" type="submit" name="processed">Processed</button>
                         </span> 
                         <span class="input-group-btn">
-                            <button class="btn btn-success" type="submit" name="incart">In-Cart</button>
+                            <button class="btn btn-success" type="submit" name = "cancelled">Cancelled</button>
                         </span> 
                         <span class="input-group-btn">
-                            <button class="btn btn-primary" type="submit" name = "cancelled">Cancelled</button>
-                        </span> 
-                        <span class="input-group-btn">
-                            <button class="btn btn-success" type="submit" name="onhold">On-hold</button>
+                            <button class="btn btn-primary" type="submit" name="onhold">On-hold</button>
                         </span> 
                     </div>
                 </form>
@@ -93,13 +90,10 @@
             }
             else if(isset($_POST['processed'])) {
               $value="processed";
-          }
-          else if(isset($_POST['incart'])) {
-           $value="cart";
-       }
-       else if(isset($_POST['cancelled'])) {
+          }         
+        else if(isset($_POST['cancelled'])) {
         $value = "cancelled";
-    }
+        }
     else if(isset($_POST['onhold'])) {
         $value = "on hold";
     }
