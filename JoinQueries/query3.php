@@ -9,8 +9,7 @@
 
     <link rel="stylesheet" href="../css/query1.css">
     
-    <script   src="https://code.jquery.com/jquery-3.1.0.min. 
-    "   integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="   crossorigin="anonymous"></script>
+   <script   src="https://code.jquery.com/jquery-3.1.1.js"   integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="   crossorigin="anonymous"></script>
     <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.7/jquery.validate.min.js"></script>
     <script href="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/additional-methods.js" type="application/javascript"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="application/javascript"></script>
@@ -71,13 +70,13 @@
         if(!empty($_REQUEST['no_of_products'])) {
             $dbh = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password); 
             
-            $flag = TRUE;
-            $no_of_products = mysql_real_escape_string($_REQUEST['no_of_products']);                    
-            $sql_stmt = "SELECT id,name,price,description FROM product WHERE id IN (SELECT productid from orderlineitems group by productid having count(*) >= '$no_of_products' );";
+            $flag = TRUE;             
+            $no_of_products = filter_input(INPUT_POST, "no_of_products");                  
+            $sql_stmt = "SELECT id,name,price,description FROM product WHERE id IN (SELECT productid from orderlineitems group by productid having count(*) >= :no_of_products);";
 
             $sql = $dbh->prepare($sql_stmt);
 
-            if($sql->execute()) {
+            if($sql->execute(array(':no_of_products' => $no_of_products))) {
                 $sql->setFetchMode(PDO::FETCH_ASSOC);
             }
         }

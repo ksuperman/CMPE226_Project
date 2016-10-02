@@ -7,14 +7,11 @@
     <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="../css/query1.css">
-    
-    <script   src="https://code.jquery.com/jquery-3.1.0.min. 
-    "   integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="   crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../css/query1.css">    
+    <script   src="https://code.jquery.com/jquery-3.1.1.js"   integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="   crossorigin="anonymous"></script>
     <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.7/jquery.validate.min.js"></script>
     <script href="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.15.1/additional-methods.js" type="application/javascript"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="application/javascript"></script>
-
 </head>
 <body>
     <nav class="navbar navbar-inverse">
@@ -61,15 +58,14 @@
 
             if(!empty($_REQUEST['category'])) {
                     $flag = TRUE;
-                    $category = mysql_real_escape_string($_REQUEST['category']);   
-                 //   $sql_stmt = "SELECT * FROM product where catalogid = '".$catalogid."'"; 
-                  
+                    //$category = mysql_real_escape_string($_REQUEST['category']);   
+                    $category = filter_input(INPUT_POST, "category");             
                    
-                    $sql_stmt = "SELECT p.id as id, p.catalogid as catalogid, c.category as category, p.name as name, p.price as price ,p.description as description  FROM product p, catalog c WHERE p.catalogid = c.id AND c.category = '".$category."'"; 
+                    $sql_stmt = "SELECT p.id as id, p.catalogid as catalogid, c.category as category, p.name as name, p.price as price ,p.description as description  FROM product p, catalog c WHERE p.catalogid = c.id AND c.category = :category"; 
                 
                     $sql = $dbh->prepare($sql_stmt);
 
-                    if($sql->execute()) {
+                    if($sql->execute(array(':category' => $category))) {
                         $sql->setFetchMode(PDO::FETCH_ASSOC);
                     }
             }
