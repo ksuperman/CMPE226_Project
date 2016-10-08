@@ -54,21 +54,20 @@
         $flag = FALSE;
 
         try {
-        $dbh = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-
+            $dbh = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
             if(!empty($_REQUEST['category'])) {
-                    $flag = TRUE;
+                $flag = TRUE;
 
-                    $category = filter_input(INPUT_POST, "category");             
-                   
-                    $sql_stmt = "SELECT p.id as id, p.catalogid as catalogid, c.category as category, p.name as name, p.price as price ,p.description as description  FROM product p, catalog c WHERE p.catalogid = c.id AND c.category = :category"; 
-                
-                    $sql = $dbh->prepare($sql_stmt);
+                $category = filter_input(INPUT_POST, "category");             
+               
+                $sql_stmt = "SELECT p.id as id, p.catalogid as catalogid, c.category as category, p.name as name, p.price as price ,p.description as description  FROM product p, catalog c WHERE p.catalogid = c.id AND c.category = :category"; 
+            
+                $sql = $dbh->prepare($sql_stmt);
 
-                    if($sql->execute(array(':category' => $category))) {
-                        $sql->setFetchMode(PDO::FETCH_ASSOC);
-                        $sql->setFetchMode(PDO::FETCH_CLASS, "CatalogProduct");
-                    }
+                if($sql->execute(array(':category' => $category))) {
+                    $sql->setFetchMode(PDO::FETCH_ASSOC);
+                    $sql->setFetchMode(PDO::FETCH_CLASS, "CatalogProduct");
+                }
             }
         }   
         catch(Exception $error) {

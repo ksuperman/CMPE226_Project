@@ -57,7 +57,10 @@
         </div><!-- /.row -->
 
         </div>
-    </div>      
+    </div>
+
+    <?php include '../orm/shoppingcartProduct.php'; ?>
+    <?php include '../helpers/tablehelper.php'; ?>      
 
     <?php
     $servername = "localhost";
@@ -79,6 +82,7 @@
 
             if($sql->execute(array(':accountId' => $accountId))) {
                 $sql->setFetchMode(PDO::FETCH_ASSOC);
+                $sql->setFetchMode(PDO::FETCH_CLASS, "ShoppingCartProduct");
             }	
         }
     }   
@@ -101,14 +105,9 @@
 						<th> Product Description </th>
                         <th>Price</th>                                              
                     </thead>
-                    <?php while($flag==TRUE AND $row = $sql->fetch()) { ?>
-
-                        <tr>                                       
-                            <td><?php echo $row['id']; ?></td>                                                     
-                            <td><?php echo $row['name']; ?></td>   
-							<td><?php echo $row['price']; ?></td> 
-                        </tr>
-                        <?php } ?>
+                    <?php while($flag==TRUE AND $shoppingCartProduct = $sql->fetch()) { ?>
+                        <?php createShopingCartRow($shoppingCartProduct) ?>
+                    <?php } ?>
                     </tbody>
                 </table>
             </div>

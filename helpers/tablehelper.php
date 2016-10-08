@@ -20,4 +20,12 @@
         print "            <td>" . $orderStatus->getQuantity() . "</td>\n";
         print "        </tr>\n";
     }
+
+    function createShopingCartRow(ShoppingCartProduct $sc) {
+        print "        <tr>\n";
+        print "            <td>" . $sc->getId()     . "</td>\n";
+        print "            <td>" . $sc->getName()   . "</td>\n";
+        print "            <td>" . $sc->getPrice() . "</td>\n";
+        print "        </tr>\n";
+    }
 ?>
