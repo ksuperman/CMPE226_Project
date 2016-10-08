@@ -15,7 +15,6 @@
 </head>
 <body>
     <nav class="navbar navbar-inverse">
-
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand" href="#">
@@ -45,7 +44,8 @@
 
         </div>
     </div>
-
+    <?php include '../orm/catalogProduct.php'; ?>
+    <?php include '../helpers/tablehelper.php'; ?>
     <?php
         $servername = "localhost";
         $username = "datafreaks";
@@ -58,7 +58,7 @@
 
             if(!empty($_REQUEST['category'])) {
                     $flag = TRUE;
-                    //$category = mysql_real_escape_string($_REQUEST['category']);   
+
                     $category = filter_input(INPUT_POST, "category");             
                    
                     $sql_stmt = "SELECT p.id as id, p.catalogid as catalogid, c.category as category, p.name as name, p.price as price ,p.description as description  FROM product p, catalog c WHERE p.catalogid = c.id AND c.category = :category"; 
@@ -67,13 +67,13 @@
 
                     if($sql->execute(array(':category' => $category))) {
                         $sql->setFetchMode(PDO::FETCH_ASSOC);
+                        $sql->setFetchMode(PDO::FETCH_CLASS, "CatalogProduct");
                     }
             }
         }   
         catch(Exception $error) {
             echo '<p>', $error->getMessage(), '</p>';
         }
-
     ?>
     <hr/>
     <div class = container>
@@ -91,22 +91,11 @@
                                     <th>Product Name</th>  
                                     <th>Price</th>  
                                     <th>Description</th>  
-
-                                   
                                 </thead>
-                                <?php while($flag == TRUE and $row = $sql->fetch()) { ?>
-                              
-                                <tr>                                       
-                                    <td><?php echo $row['id']; ?></td>              
-                                    <td><?php echo $row['catalogid']; ?></td>              
-                                    <td><?php echo $row['category']; ?></td>              
-                                    <td><?php echo $row['name']; ?></td>              
-                                    <td><?php echo $row['price']; ?></td>              
-                                    <td><?php echo $row['description']; ?></td>   
-                                </tr>
+                                <?php while($flag == TRUE and $catalogProduct = $sql->fetch()) { ?>
+                                    <?php createTableRow($catalogProduct) ?>
                                 <?php } ?>
                             </tbody>
-
                         </table>
                     </div>
                 </div>
@@ -114,8 +103,5 @@
             </div><!-- /.row -->
         </div>
     </div>
-
-
-
 </body>
 </html>
