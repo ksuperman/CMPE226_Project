@@ -58,7 +58,8 @@
 
         </div>
     </div>      
-
+    <?php include '../orm/modeAddressAccount.php'; ?>
+	<?php include '../helpers/tablehelper.php'; ?>
     <?php
     $servername = "localhost";
     $username = "datafreaks";
@@ -72,19 +73,19 @@
             
             $flag = TRUE;
 			$accountId = filter_input(INPUT_POST, "accountId");                  
-            $sql_stmt = "SELECT mop.type AS 'Payment Type', mop.cardnumber AS 'Card Number', acc.EMAIL as 'Email', CONCAT(CONCAT(addr.CITY, ', '), addr.STATE) as 'address' FROM `modeofpayment` mop, account acc, address addr WHERE mop.ACCOUNTID = acc.ID AND mop.ADDRESSID = addr.ID AND `ACCOUNTID` =:accountId ;";
+            $sql_stmt = "SELECT mop.id as 'id',mop.type AS 'type', mop.cardnumber AS 'cardnumber', acc.EMAIL as 'email', CONCAT(CONCAT(addr.CITY, ', '), addr.STATE) as 'address' FROM `modeofpayment` mop, account acc, address addr WHERE mop.ACCOUNTID = acc.ID AND mop.ADDRESSID = addr.ID AND `ACCOUNTID` =:accountId ;";
 
             $sql = $dbh->prepare($sql_stmt);
 
             if($sql->execute(array(':accountId' => $accountId))) {
                 $sql->setFetchMode(PDO::FETCH_ASSOC);
+				$sql->setFetchMode(PDO::FETCH_CLASS, "ModeAddressAccount");
             }	
         }
     }   
     catch(Exception $error) {
         echo '<p>', $error->getMessage(), '</p>';
     }
-
 ?>
 <br/>
 <div class = container>
@@ -101,15 +102,11 @@
                         <th>Email</th> 
                         <th>Address</th>                                              
                     </thead>
-                    <?php while($flag==TRUE AND $row = $sql->fetch()) { ?>
-
-                        <tr>                                       
-                            <td><?php echo $row['Payment Type']; ?></td>                                                     
-                            <td><?php echo $row['Card Number']; ?></td>   
-							<td><?php echo $row['Email']; ?></td> 
-                            <td><?php echo $row['address']; ?></td> 
-                        </tr>
-                        <?php } ?>
+                    <?php while($flag == TRUE and $modeAddressAccount = $sql->fetch()) { ?>
+                        <?php
+							fetchAccountDetails($modeAddressAccount) 
+						?>
+                    <?php } ?>
                     </tbody>
                 </table>
             </div>

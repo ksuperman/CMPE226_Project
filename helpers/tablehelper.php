@@ -20,13 +20,22 @@
         print "            <td>" . $orderStatus->getQuantity() . "</td>\n";
         print "        </tr>\n";
     }
-	
+
 	 function createProductSales(ProductSales $productSales) {
         print "        <tr>\n";
         print "            <td>" . $productSales->getId()     . "</td>\n";
         print "            <td>" . $productSales->getName()  . "</td>\n";
         print "            <td>" . $productSales->getPrice()   . "</td>\n";
         print "            <td>" . $productSales->getDescription() . "</td>\n";
+		print "        </tr>\n";
+    }
+	
+	function fetchAccountDetails(ModeAddressAccount $modeAddressAccount) {
+        print "        <tr>\n";
+        print "            <td>" . $modeAddressAccount->getEmail()  . "</td>\n";
+        print "            <td>" . $modeAddressAccount->getCardNumber()   . "</td>\n";
+        print "            <td>" . $modeAddressAccount->getAddress() . "</td>\n";
+        print "            <td>" . $modeAddressAccount->getType() . "</td>\n";
         print "        </tr>\n";
     }
 ?>
