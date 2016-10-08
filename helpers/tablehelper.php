@@ -1,5 +1,5 @@
 <?php 
-	function createCatalogProductRow(CatalogProduct $p)
+	function createTableRow(CatalogProduct $p)
     {
         print "        <tr>\n";
         print "            <td>" . $p->getId()     . "</td>\n";
@@ -20,12 +20,13 @@
         print "            <td>" . $orderStatus->getQuantity() . "</td>\n";
         print "        </tr>\n";
     }
-
-    function createShopingCartRow(ShoppingCartProduct $sc) {
+	
+	 function createProductSales(ProductSales $productSales) {
         print "        <tr>\n";
-        print "            <td>" . $sc->getId()     . "</td>\n";
-        print "            <td>" . $sc->getName()   . "</td>\n";
-        print "            <td>" . $sc->getPrice() . "</td>\n";
+        print "            <td>" . $productSales->getId()     . "</td>\n";
+        print "            <td>" . $productSales->getName()  . "</td>\n";
+        print "            <td>" . $productSales->getPrice()   . "</td>\n";
+        print "            <td>" . $productSales->getDescription() . "</td>\n";
         print "        </tr>\n";
     }
 ?>
