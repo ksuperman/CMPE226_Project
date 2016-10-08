@@ -1,5 +1,5 @@
 <?php 
-	function createTableRow(CatalogProduct $p)
+	function createCatalogProductRow(CatalogProduct $p)
     {
         print "        <tr>\n";
         print "            <td>" . $p->getId()     . "</td>\n";
@@ -36,6 +36,14 @@
         print "            <td>" . $modeAddressAccount->getCardNumber()   . "</td>\n";
         print "            <td>" . $modeAddressAccount->getAddress() . "</td>\n";
         print "            <td>" . $modeAddressAccount->getType() . "</td>\n";
+        print "        </tr>\n";
+    }
+    
+    function createShopingCartRow(ShoppingCartProduct $sc) {
+        print "        <tr>\n";
+        print "            <td>" . $sc->getId()     . "</td>\n";
+        print "            <td>" . $sc->getName()   . "</td>\n";
+        print "            <td>" . $sc->getPrice() . "</td>\n";
         print "        </tr>\n";
     }
 ?>
