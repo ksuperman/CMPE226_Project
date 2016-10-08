@@ -67,7 +67,10 @@
 
         </div>
     </div>
-
+    
+    <?php include '../orm/orderStatus.php'; ?>
+    <?php include '../helpers/tablehelper.php'; ?>
+    
     <?php
     $servername = "localhost";
     $username = "datafreaks";
@@ -114,7 +117,8 @@ else
 $sql = $dbh->prepare($sql_stmt);
 
 if($sql->execute()) {
-    $sql->setFetchMode(PDO::FETCH_ASSOC);
+    //$sql->setFetchMode(PDO::FETCH_ASSOC);
+     $sql->setFetchMode(PDO::FETCH_CLASS, "OrderStatus");
 }
 
 }   
@@ -137,30 +141,20 @@ catch(Exception $error) {
                         <th>Status</th>              
                         <th>Product Name</th>   
                         <th>Price</th>   
-                        <th>Quantity</th>                                      
-
+                        <th>Quantity</th>        
                     </thead>
-                    <?php while($row = $sql->fetch()) { ?>
-
-                        <tr>                                       
-                            <td><?php echo $row['id']; ?></td>              
-                            <td><?php echo $row['status']; ?></td>              
-                            <td><?php echo $row['name']; ?></td> 
-                            <td><?php echo $row['price']; ?></td> 
-                            <td><?php echo $row['quantity']; ?></td> 
-                        </tr>
-                        <?php } ?>
+                    <?php 
+                       while($orderStatus = $sql->fetch()) { 
+                            createOrderStatus($orderStatus);
+                        } ?>
                     </tbody>
 
                 </table>
             </div>
         </div>
         <div class="col-lg-2">
-        </div><!-- /.row -->
+        </div>
     </div>
 </div>
-
-
-
 </body>
 </html>

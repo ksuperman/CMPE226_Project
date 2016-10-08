@@ -10,4 +10,14 @@
         print "            <td>" . $p->getDescription() . "</td>\n";
         print "        </tr>\n";
     }
+
+    function createOrderStatus(OrderStatus $orderStatus) {
+        print "        <tr>\n";
+        print "            <td>" . $orderStatus->getId()     . "</td>\n";
+        print "            <td>" . $orderStatus->getStatus()  . "</td>\n";
+        print "            <td>" . $orderStatus->getName()   . "</td>\n";
+        print "            <td>" . $orderStatus->getPrice() . "</td>\n";
+        print "            <td>" . $orderStatus->getQuantity() . "</td>\n";
+        print "        </tr>\n";
+    }
 ?>
