@@ -58,10 +58,11 @@
 
         </div>
     </div>      
-
+	 <?php include '../orm/ProductSales.php'; ?>
+    <?php include '../helpers/tablehelper.php'; ?>
     <?php
     $servername = "localhost";
-    $username = "datafreaks";
+    $username = "root";
     $password = "sesame";
     $dbname = "datafreaks";
     $flag = FALSE;
@@ -75,10 +76,10 @@
             $sql_stmt = "SELECT id,name,price,description FROM product WHERE id IN (SELECT productid from orderlineitems group by productid having count(*) >= :no_of_products);";
 
             $sql = $dbh->prepare($sql_stmt);
-
             if($sql->execute(array(':no_of_products' => $no_of_products))) {
-                $sql->setFetchMode(PDO::FETCH_ASSOC);
-            }
+                        $sql->setFetchMode(PDO::FETCH_ASSOC);
+                        $sql->setFetchMode(PDO::FETCH_CLASS, "ProductSales");
+                  }
         }
     }   
     catch(Exception $error) {
@@ -101,15 +102,9 @@
                         <th>Description</th>                                      
 
                     </thead>
-                    <?php while($flag==TRUE AND $row = $sql->fetch()) { ?>
-
-                        <tr>                                       
-                            <td><?php echo $row['id']; ?></td>                                                     
-                            <td><?php echo $row['name']; ?></td> 
-                            <td><?php echo $row['price']; ?></td> 
-                            <td><?php echo $row['description']; ?></td> 
-                        </tr>
-                        <?php } ?>
+                     <?php while($flag == TRUE and $productSales = $sql->fetch()) { ?>
+                                    <?php createProductSales($productSales) ?>
+                                <?php } ?>
                     </tbody>
                 </table>
             </div>
