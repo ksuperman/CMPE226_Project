@@ -46,7 +46,13 @@
     </div>
     <?php include '../orm/catalogProduct.php'; ?>
     <?php include '../helpers/tablehelper.php'; ?>
+    <?php include '../helpers/customErrorHandler.php'; ?>
     <?php
+
+        define('LIVE', FALSE);
+
+        set_error_handler ('customErrorHandler');
+
         $servername = "localhost";
         $username = "datafreaks";
         $password = "sesame";
