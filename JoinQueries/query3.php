@@ -58,11 +58,17 @@
 
         </div>
     </div>      
-	 <?php include '../orm/ProductSales.php'; ?>
+	<?php include '../orm/ProductSales.php'; ?>
     <?php include '../helpers/tablehelper.php'; ?>
+    <?php include '../helpers/customErrorHandler.php'; ?>
     <?php
+
+    define('LIVE', FALSE);
+
+    set_error_handler ('customErrorHandler');
+    
     $servername = "localhost";
-    $username = "root";
+    $username = "datafreaks";
     $password = "sesame";
     $dbname = "datafreaks";
     $flag = FALSE;
