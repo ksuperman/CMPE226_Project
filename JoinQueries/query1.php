@@ -93,7 +93,7 @@
                                     <th>Description</th>  
                                 </thead>
                                 <?php while($flag == TRUE and $catalogProduct = $sql->fetch()) { ?>
-                                    <?php createTableRow($catalogProduct) ?>
+                                    <?php createCatalogProductRow($catalogProduct) ?>
                                 <?php } ?>
                             </tbody>
                         </table>

@@ -1,5 +1,5 @@
 <?php 
-	function createTableRow(CatalogProduct $p)
+	function createCatalogProductRow(CatalogProduct $p)
     {
         print "        <tr>\n";
         print "            <td>" . $p->getId()     . "</td>\n";
