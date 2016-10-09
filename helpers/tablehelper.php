@@ -46,4 +46,16 @@
         print "            <td>" . $sc->getPrice() . "</td>\n";
         print "        </tr>\n";
     }
+
+    function createAccountAddressRow(AccountAddress $sc) {
+        print "        <tr>\n";
+        print "            <td>" . $sc->getId()     . "</td>\n";
+        print "            <td>" . $sc->getUnitNumber()   . "</td>\n";
+        print "            <td>" . $sc->getStreetName() . "</td>\n";
+        print "            <td>" . $sc->getCity() . "</td>\n";
+        print "            <td>" . $sc->getCountry() . "</td>\n";
+        print "            <td>" . $sc->getZipcode() . "</td>\n";
+        print "        </tr>\n";
+    }
+
 ?>
